@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .btn{
+            background-color: rgb(229,65,96);
+            color:white;
+            font-weight: bold;
+        }
+        .btn:hover{
+            background-color: rgb(186,53,80);
+            color:white;
+        }
+    </style>
+
+    <h1>Users list</h1>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naam</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{% if user.geboortedatum %}{{ user.geboortedatum|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li style="list-style-type: none;">
+                            <a href="{{ path('role_action', { 'id': user.id }) }}">
+                                <button type="button" class="btn">{% if user.roles[0] == 'ROLE_SUPER_ADMIN' %}Verwijder Admin{% else %}Maak Admin{% endif %}</button>
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

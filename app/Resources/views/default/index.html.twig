@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}SIA{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+</head>
+    <body onresize="slider()">
+<!--login button-->
+        <nav class="navbar">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <a href="{{ path('fos_user_security_logout') }}">Uitloggen als {{ app.User }}</a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'Login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </nav>
+<!--slider-->
+        <div class="slider">
+            <a href="#blocken">
+                <img id="arrow" src="{{ asset('images/arrow.png') }}">
+            </a>
+        </div>
+<!--blocken-->
+        <div class="container" id="blocken">
+            <div class="row">
+                <div class="col-sm-3">
+                    <a class="a-block" href="/intake/new">
+                        <div class="block">
+                            <div class="image"></div>
+                            <div class="text">Opleiding 1</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="a-block" href="/intake/new">
+                        <div class="block">
+                            <div class="image"></div>
+                            <div class="text">Opleiding 2</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="a-block" href="/intake/new">
+                        <div class="block">
+                            <div class="image"></div>
+                            <div class="text">Opleiding 3</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="a-block" href="/intake/new">
+                        <div class="block">
+                            <div class="image"></div>
+                            <div class="text">Opleiding 4</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="a-block" href="/intake/new">
+                        <div class="block">
+                            <div class="image"></div>
+                            <div class="text">Opleiding 5</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="a-block" href="/intake/new">
+                        <div class="block">
+                            <div class="image"></div>
+                            <div class="text">Opleiding 6</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+<!--javascript-->
+        <script src="{{ asset('js/main.js') }}"></script>
+    </body>
+</html>

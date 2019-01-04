@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .btn{
+            background-color: rgb(229,65,96);
+            color:white;
+            font-weight: bold;
+        }
+        .btn:hover{
+            background-color: rgb(186,53,80);
+            color:white;
+        }
+    </style>
+    <h1>Intake</h1>
+
+    <table class="table table-striped table-hover">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ intake.id }}</td>
+            </tr>
+            <tr>
+                <th>Datum</th>
+                <td>{% if intake.datum %}{{ intake.datum|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Tijd</th>
+                <td>{% if intake.tijd %}{{ intake.tijd|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Duur</th>
+                <td>{% if intake.duur %}{{ intake.duur|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Locatie</th>
+                <td>{{ intake.locatie }}</td>
+            </tr>
+            <tr>
+                <th>Student</th>
+                <td>{{ intake.userId }}</td>
+            </tr>
+            <tr>
+                <th>Docent</th>
+                <td>{{ intake.docentId }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li style="list-style-type: none;">
+            {{ form_start(delete_form) }}
+            <a class="btn" href="{{ path('intake_index') }}">Terug naar de lijst</a>
+            <a class="btn" href="{{ path('intake_edit', { 'id': intake.id }) }}">Opslaan</a>
+            <input class="btn" type="submit" value="Verwijderen">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

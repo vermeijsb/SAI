@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .btn{
+            background-color: rgb(229,65,96);
+            color:white;
+            font-weight: bold;
+        }
+        .btn:hover{
+            background-color: rgb(186,53,80);
+            color:white;
+        }
+    </style>
+
+    <ul>
+        <li style="list-style-type: none; display: inline;">
+            <h1>Lijst met opleidingen</h1>
+        </li>
+        <li style="list-style-type: none; display: inline; float: right;">
+            <a class="btn" href="{{ path('opleiding_new') }}">Maak een nieuwe opleiding aan</a>
+        </li>
+    </ul>
+
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Opleiding</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for opleiding in opleidings %}
+            <tr>
+                <td>{{ opleiding.opleiding }}</td>
+                <td>
+                    <ul>
+                        <li style="list-style-type: none;">
+                            <a class="btn" href="{{ path('opleiding_show', { 'id': opleiding.id }) }}">show</a>
+                            <a class="btn" href="{{ path('opleiding_edit', { 'id': opleiding.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li style="list-style-type: none;">
+
+        </li>
+    </ul>
+{% endblock %}

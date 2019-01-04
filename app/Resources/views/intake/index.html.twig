@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .btn{
+            background-color: rgb(229,65,96);
+            color:white;
+            font-weight: bold;
+        }
+        .btn:hover{
+            background-color: rgb(186,53,80);
+            color:white;
+        }
+    </style>
+
+    <ul>
+        <li style="list-style-type: none; display: inline;">
+            <h1>Dashboard</h1>
+        </li>
+        <li style="list-style-type: none; display: inline; float: right;">
+            <a class="btn" href="{{ path('intake_new') }}">Maak een nieuwe intake aan</a>
+        </li>
+    </ul>
+
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Tijd</th>
+                <th>Duur</th>
+                <th>Locatie</th>
+                <th>Student</th>
+                <th>Docent</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for intake in intakes %}
+            <tr>
+                <td>{% if intake.datum %}{{ intake.datum|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if intake.tijd %}{{ intake.tijd|date('H:i:s') }}{% endif %}</td>
+                <td>{% if intake.duur %}{{ intake.duur|date('H:i:s') }}{% endif %}</td>
+                <td>{{ intake.locatie }}</td>
+                <td>{{ intake.userId }}</td>
+                <td>{{ intake.docentId }}</td>
+                <td>
+                    <ul>
+                        <li style="list-style-type: none;">
+                            <a class="btn" href="{{ path('intake_show', { 'id': intake.id }) }}">show</a>
+                            <a class="btn" href="{{ path('intake_edit', { 'id': intake.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

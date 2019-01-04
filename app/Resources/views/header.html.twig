@@ -1,0 +1,62 @@
+{% block head %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        .navbar{
+            Background-color: rgb(59,15,74);
+            margin-bottom: 25px;
+        }
+        .navbar a{
+            text-decoration: none;
+            color: white;
+            margin-right: 10px;
+        }
+        .navbar a:hover{
+            color: rgba(255,255,255, 0.8);
+            /*color: rgba(229,65,96, 0.8);*/
+        }
+        .dropdown-menu{
+            background-color: rgb(229,65,96);
+        }
+        .dropdown-menu a:hover{
+            color: rgb(229,65,96);
+        }
+        .navbar .navbar-brand{
+            margin-top: -13px;
+            margin-bottom: -13px;
+        }
+    </style>
+{% endblock %}
+{% block header %}
+    <nav class="navbar navbar-dark">
+        <a class="navbar-brand" href="/"><img height="50px" src="{{ asset('images/logo-banner.png') }}"></a>
+        <ul class="nav">
+            <li><a href="/intake">Dashboard</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="/opleiding">Opleidingen</a></li>
+                <li><a href="/user">Gebruikers</a></li>
+            {% endif %}
+        </ul>
+        <ul class="nav justify-content-end">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        {{ app.User }}
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/profile">Profiel</a>
+                        <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">
+                            log uit
+                        </a>
+                    </div>
+                </li>
+            {% else %}
+                <li><a href="{{ path('fos_user_security_login') }}">{{ 'Login'|trans({}, 'FOSUserBundle') }}</a></li>
+            {% endif %}
+            {#<li><a href="/login">Log-in</a></li>#}
+            {#<li><a href="/register">Registreer</a></li>#}
+        </ul>
+    </nav>
+{% endblock %}

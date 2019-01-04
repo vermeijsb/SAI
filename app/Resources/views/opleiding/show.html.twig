@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .btn{
+            background-color: rgb(229,65,96);
+            color:white;
+            font-weight: bold;
+        }
+        .btn:hover{
+            background-color: rgb(186,53,80);
+            color:white;
+        }
+    </style>
+    <h1>Opleiding</h1>
+
+    <table class="table table-striped table-hover">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ opleiding.id }}</td>
+            </tr>
+            <tr>
+                <th>Opleiding</th>
+                <td>{{ opleiding.opleiding }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li style="list-style-type: none;">
+            {{ form_start(delete_form) }}
+                <a class="btn" href="{{ path('opleiding_index') }}">Terug naar de lijst</a>
+                <a class="btn" href="{{ path('opleiding_edit', { 'id': opleiding.id }) }}">Opslaan</a>
+                <input class="btn" type="submit" value="Verwijderen">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .btn{
+            background-color: rgb(229,65,96);
+            color:white;
+            font-weight: bold;
+        }
+        .btn:hover{
+            background-color: rgb(186,53,80);
+            color:white;
+        }
+    </style>
+    <h1 class="text-center">Intake Aanmaken</h1><br />
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br/><a class="btn" href="{{ path('intake_index') }}">Terug naar lijst</a>
+    <input class="btn" type="submit" value="Opslaan" />
+    {{ form_end(form) }}
+
+{% endblock %}
